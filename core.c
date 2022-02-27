@@ -19,10 +19,7 @@ int    main(void)
     pthread_t    newthread[5];
     int *res;
 
-    printf("waiting for the thread...\n");
     pthread_create(&newthread[4], NULL, philo5, NULL);
     pthread_join(newthread[4], (void *)&res);
-    printf("res: %d\n", *res);
-    printf("Done\n");
     return (0);
 }
