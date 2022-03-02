@@ -2,8 +2,8 @@ CC= gcc -pthread
 FLAGS= -Wall -Wextra -Werror
 RM= rm -rf
 
-FILES= core
 HEADER= philo.h
+FILES= main core init  utils
 OBJ=$(FILES:=.o)
 SRC=$(FILES:=.c)
 NAME=philo

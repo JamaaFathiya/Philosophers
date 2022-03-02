@@ -1,25 +1,26 @@
 #include "philo.h"
 
-void    *philo5(void *arg)
+void *core(void *arg)
 {
-    (void ) arg;
-    int *ptr;
+    t_phil *philo;
 
-    ptr = malloc(sizeof(int));
-    *ptr = 2;
-        printf("philo5!\n");
-
-        sleep(1);
-
-    return (ptr);
-}
-
-int    main(void)
-{
-    pthread_t    newthread[5];
-    int *res;
-
-    pthread_create(&newthread[4], NULL, philo5, NULL);
-    pthread_join(newthread[4], (void *)&res);
-    return (0);
+    philo = (t_phil *)arg;
+    printf("hi i am the philosopher %d\n", philo->id);
+   /* while(1)
+    {
+        if(arg->philo[id]->state == 0)
+            eat(arg);
+        else if (arg->philo[id]->atate == 1)
+        {
+            arg->philo->state = 2;
+            sleip(arg);
+        }
+        else if(arg->philo[id]->state == 2)
+        {
+            arg->philo[id]->state = 0;
+            printf("%li Philospher %i is thinking",getmili(),
+                    arg->philo[id]->id);
+        }
+    }*/
+    return (NULL);
 }
