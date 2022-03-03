@@ -7,25 +7,32 @@ long long getmili(void)
     return (current_time.tv_sec * 1000 + current_time.tv_usec / 1000);
 }
 
-void  take_a_fork(int id, void *arg)
+void  take_a_fork(t_phil *philo, int id)
 {
-    printf("%li Philospher %i has taken a fork",getmili(), arg->philo->id);
-    mutex_lock(arg->locks[id]);
+    printf("%lli Philospher %i has taken a fork\n",getmili(), philo->id);
+    pthread_mutex_lock(&(philo->arg->locks[id]));
 }
 
-void eat(void *arg)
+void put_down(t_phil *philo, int id)
 {
-
-    take_a_fork(arg->philo->id, arg);
-    take_a_fork((arg->philo->id + 1) % arg->nbr_of_philo, arg);
-    arg->philo->state = 1;
-    printf("%li Philospher %i is eating",getmili(),  arg->philo->id);
-    usleep(arg->t.eat);
-
+    pthread_mutex_unlock(&(philo->arg->locks[id]));
 }
 
-void sleip(void *arg)
+void eat(t_phil *philo)
 {
-    printf("%li Philospher %i is sleeping",getmili(),  arg->philo->id);
-    usleep(arg->t_sleep);
+    take_a_fork(philo, philo->id);
+    take_a_fork(philo, (philo->id) % philo->arg->nbr_of_philo);
+    printf("%lli Philospher %i is eating\n",getmili(), philo->id);
+    sleep(1);
+    usleep(philo->arg->t_eat);
+    put_down(philo,  philo->id);
+    put_down(philo, (philo->id) % philo->arg->nbr_of_philo);
+    philo->state = 1;
+}
+
+void sleip(t_phil *philo)
+{
+   
+    printf("%lli Philospher %i is sleeping\n",getmili(), philo->id);
+    usleep(philo->arg->t_sleep);
 }

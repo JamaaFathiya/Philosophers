@@ -6,15 +6,18 @@
 # include <unistd.h>
 # include <pthread.h>
 # include <string.h>
+# include <sys/time.h>
+
+struct arg;
 
 typedef struct  philo
-{
-	int state;
+{ 	int state;
 	int id;
 	pthread_t thread_id;
+	struct arg *arg;
 }	t_phil;
 
-typedef struct phil
+typedef struct arg
 {
 	int	nbr_of_philo;
 	int	t_die;
@@ -38,5 +41,8 @@ int			init_arg(t_arg *arg, int ac, char **av);
 void		join_thread(t_arg *arg);
 
 /* <-------- Core function -----------> */
-void *core(void *philo);
+void	*core(void *philo);
+void	take_a_fork(t_phil *philo, int id);
+void	eat(t_phil *philo);
+void	sleip(t_phil *philo);
 # endif

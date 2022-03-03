@@ -3,7 +3,7 @@ FLAGS= -Wall -Wextra -Werror
 RM= rm -rf
 
 HEADER= philo.h
-FILES= main core init  utils
+FILES= main core init  utils philo
 OBJ=$(FILES:=.o)
 SRC=$(FILES:=.c)
 NAME=philo
@@ -33,7 +33,7 @@ UNDER = \x1b[4m
 all: $(NAME)
 
 $(NAME): $(OBJ) $(HEADER)
-	@$(CC) $(FLAGS) $(OBJ) $(OPT) -I ./ -o $(NAME)
+	@$(CC) $(FLAGS) $(OBJ) $(opt) -I ./ -o $(NAME)
 	@printf " [$(BOLD)$(GREEN):)$(END)] [$(BOLD)$(GREEN)SUCCESS$(END)]\n"
 
 %.o: %.c $(HEADER)

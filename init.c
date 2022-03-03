@@ -6,7 +6,7 @@
 /*   By: fathjami <fathjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:18:56 by fathjami          #+#    #+#             */
-/*   Updated: 2022/03/02 16:48:07 by fathjami         ###   ########.fr       */
+/*   Updated: 2022/03/03 16:01:49 by fathjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int init_arg(t_arg *arg, int ac, char **av)
         arg->philo[i].state = 0;
         i++;
     }
+    arg->philo->arg = arg;
     return (1);
 }
 
@@ -48,6 +49,7 @@ int init_thread(t_arg *arg)
             return (0);
             i++;
     }
+    printf("-----\n");
     return (1);
 }
 
@@ -58,9 +60,8 @@ int init_mutex(t_arg *arg)
     i = 0;
     while (i < arg->nbr_of_philo)
     {
-        if (pthread_mutex_init(&(arg->locks[i]), NULL))
+        if (pthread_mutex_init(arg->locks + i, NULL))
             return (0);
-    printf("got here\n");
         i++;
     }
     return (1);

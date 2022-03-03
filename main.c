@@ -6,7 +6,7 @@
 /*   By: fathjami <fathjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:19:33 by fathjami          #+#    #+#             */
-/*   Updated: 2022/03/02 16:44:42 by fathjami         ###   ########.fr       */
+/*   Updated: 2022/03/03 15:51:08 by fathjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,11 @@ int main(int ac, char **av)
     memset(arg, 0, sizeof(t_arg));
     if(ac != 5 && ac != 6)
         print_error("Incorrect number of arguments.\n");
-    else if (!init_arg(arg, ac, av))
+    if (!init_arg(arg, ac, av))
         print_error("Allocation failed.\n");
+    init_mutex(arg);
     if(!init_thread(arg))
         print_error("Something went wrong during the threads creation.\n");
-    init_mutex(arg);
-    sleep(1);
     join_thread(arg);
     return (0);
 }
-
-
