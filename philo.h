@@ -42,7 +42,7 @@ void		join_thread(t_arg *arg);
 
 /* <-------- Core function -----------> */
 void	*core(void *philo);
-void	take_a_fork(t_phil *philo, int id);
+void	take_a_fork(t_phil *philo, int id, char *hand);
 void	eat(t_phil *philo);
 void	sleip(t_phil *philo);
 # endif
