@@ -1,40 +1,46 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fathjami <fathjami@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/05 12:31:54 by fathjami          #+#    #+#             */
+/*   Updated: 2022/03/05 18:35:35 by fathjami         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-long long getmili(void)
-{
-    struct timeval current_time;
-    gettimeofday(&current_time, NULL);
-    return (current_time.tv_sec * 1000 + current_time.tv_usec / 1000);
-    //return (current_time.tv_sec * 100);
-}
-
-void  take_a_fork(t_phil *philo, int id, char *hand)
+void  take_forks(t_phil *philo, int id)
 {
     pthread_mutex_lock(&(philo->arg->locks[id]));
-    printf("%lli Philospher %i has taken a fork with his %s hand\n", getmili() ,philo->id + 1, hand);
+    print_msg(philo, "has taken a fork");
+    pthread_mutex_lock(&(philo->arg->locks[(id + 1) % 
+    philo->arg->nbr_of_philo]));
+    print_msg(philo, "has taken a fork");
 }
 
 void put_down(t_phil *philo, int id)
 {
     pthread_mutex_unlock(&(philo->arg->locks[id]));
+    pthread_mutex_unlock(&(philo->arg->locks[(id + 1) % philo->arg->nbr_of_philo]));
 }
 
 void eat(t_phil *philo)
 {
-    take_a_fork(philo, philo->id, "right");
-    take_a_fork(philo, (philo->id + 1) % philo->arg->nbr_of_philo, "left");
-    printf("%lli Philospher %i is eating\n",getmili(), philo->id + 1);
-     usleep(philo->arg->t_eat * 1000);
-    //sleep(1);
+    take_forks(philo, philo->id);
+    print_msg(philo, "is eating");
+    usleep(philo->arg->t_eat * 1000);
     put_down(philo,  philo->id);
-    put_down(philo, (philo->id + 1) % philo->arg->nbr_of_philo);
-    philo->state = 1;
+    philo->nb_of_meals++;
+    if (philo->nb_of_meals == philo->arg->nbr_meal)
+        philo->arg->all_ate++;
 }
 
-void sleip(t_phil *philo)
+void sleep_and_think(t_phil *philo)
 {
-   
-    printf("%lli Philospher %i is sleeping\n",getmili(), philo->id + 1);
+    print_msg(philo, "is sleeping");
     usleep(philo->arg->t_sleep * 1000);
-    //sleep(1);
+    print_msg(philo, "is thinking");
 }
