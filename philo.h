@@ -55,7 +55,7 @@ void	*core(void *philo);
 
 /* <-------- Activities functions -----------> */
 
-void	take_a_fork(t_phil *philo, int id, char *hand);
+void 	pichup_forks(t_phil *philo, int id);
 void	eat(t_phil *philo);
 void	sleep_and_think(t_phil *philo);
 

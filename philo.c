@@ -6,13 +6,13 @@
 /*   By: fathjami <fathjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/05 12:31:54 by fathjami          #+#    #+#             */
-/*   Updated: 2022/03/05 18:35:35 by fathjami         ###   ########.fr       */
+/*   Updated: 2022/03/05 18:38:24 by fathjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void  take_forks(t_phil *philo, int id)
+void    pickup_forks(t_phil *philo, int id)
 {
     pthread_mutex_lock(&(philo->arg->locks[id]));
     print_msg(philo, "has taken a fork");
@@ -29,7 +29,7 @@ void put_down(t_phil *philo, int id)
 
 void eat(t_phil *philo)
 {
-    take_forks(philo, philo->id);
+    pichup_forks(philo, philo->id);
     print_msg(philo, "is eating");
     usleep(philo->arg->t_eat * 1000);
     put_down(philo,  philo->id);
