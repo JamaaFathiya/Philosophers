@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fathjami <fathjami@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/07 04:16:51 by fathjami          #+#    #+#             */
+/*   Updated: 2022/03/07 04:28:54 by fathjami         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -9,19 +21,19 @@
 # include <sys/time.h>
 
 typedef struct timeval	t_time;
-struct					arg;
+struct					s_arg;
 
-typedef struct  philo
+typedef struct s_philo
 {
-	int			id;
- 	int			state;
-	int			nb_of_meals;
-	struct arg	*arg;
-	long long	last_meal;
-	pthread_t	thread_id;
+	int				id;
+	int				state;
+	int				nb_of_meals;
+	struct s_arg	*arg;
+	long long		my_time_has_come;
+	pthread_t		thread_id;
 }	t_phil;
 
-typedef struct arg
+typedef struct s_arg
 {
 	int				t_die;
 	int				t_eat;
@@ -36,33 +48,35 @@ typedef struct arg
 	pthread_mutex_t	finish_lock;
 }	t_arg;
 
-void    *hungry(void *arg);
-void    print_msg(t_phil *philo, char *msg);
-
-
 /* <---------- initilazing functions-----------> */
 
 void		print_error(char *str);
-int			init_thread(t_arg *arg);
+void		join_thread(t_arg *arg);
 int			init_mutex(t_arg *arg);
+int			init_thread(t_arg *arg);
 int			ft_atoi(const char *str);
 int			init_arg(t_arg *arg, int ac, char **av);
-void		join_thread(t_arg *arg);
 
-/* <-------- Core function -----------> */
+/* <-------------- Core function --------------> */
 
-void	*core(void *philo);
+void		*core(void *philo);
 
-/* <-------- Activities functions -----------> */
+/* <--------- Activities functions ------------> */
 
-void 	pichup_forks(t_phil *philo, int id);
-void	eat(t_phil *philo);
-void	sleep_and_think(t_phil *philo);
+void		eat(t_phil *philo);
+void		sleep_and_think(t_phil *philo);
+void		pickup_forks(t_phil *philo, int id);
 
-/* <--------- Utils functions ---------> */
+/* <----------- Monitoring functions ----------> */
 
-int			ft_atoi(const char *nptr);
+void		*alive(void *arg);
+void		*hungry(void *arg);
+
+/* <------------- Utils functions -------------> */
+
 long long	getmili(void);
+int			ft_atoi(const char *nptr);
 long long	current_time(t_phil *philo);
+void		print_msg(t_phil *philo, char *msg);
 
-# endif
+#endif

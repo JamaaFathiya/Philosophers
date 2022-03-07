@@ -6,31 +6,38 @@
 /*   By: fathjami <fathjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 13:25:15 by fathjami          #+#    #+#             */
-/*   Updated: 2022/03/05 15:44:21 by fathjami         ###   ########.fr       */
+/*   Updated: 2022/03/07 04:14:37 by fathjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long long getmili(void)
+long long	getmili(void)
 {
-    t_time current_time;
-    gettimeofday(&current_time, NULL);
-    return (current_time.tv_sec * 1000 + current_time.tv_usec / 1000);
+	t_time	current_time;
+
+	gettimeofday(&current_time, NULL);
+	return (current_time.tv_sec * 1000 + current_time.tv_usec / 1000);
 }
 
 long long	current_time(t_phil *philo)
 {
-	long long time;
-	
+	long long	time;
+
 	time = getmili() - philo->arg->creation_time;
 	return (time);
+}
+
+void	print_error(char *str)
+{
+	printf("Error! %s", str);
+	exit (1);
 }
 
 static int	ft_isspace(char c)
 {
 	return (c == '\t' || c == '\n' || c == '\f' || c == '\v'
-			|| c == '\r' || c == ' ');
+		|| c == '\r' || c == ' ');
 }
 
 int	ft_atoi(const char *nptr)
@@ -57,10 +64,4 @@ int	ft_atoi(const char *nptr)
 		i++;
 	}
 	return (res * s);
-}
-
-void    print_error(char *str)
-{
-	printf("Error! %s", str);
-	exit (1);
 }

@@ -3,7 +3,7 @@ FLAGS= -Wall -Wextra -Werror
 RM= rm -rf
 
 HEADER= philo.h
-FILES= main core init  utils philo
+FILES= main core init  utils philo monitoring
 OBJ=$(FILES:=.o)
 SRC=$(FILES:=.c)
 NAME=philo
