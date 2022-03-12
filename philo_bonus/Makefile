@@ -4,9 +4,9 @@ RM= rm -rf
 
 HEADER= philo_bonus.h
 FILES= core main init utils activities clean monitoring
-OBJ=$(FILES:=.o)
-SRC=$(FILES:=.c)
-NAME=philo
+OBJ=$(FILES:=_bonus.o)
+SRC=$(FILES:=_bonus.c)
+NAME=philo_bonus
 
 ifeq ($(DEBUG), 1)
 OPT = -g

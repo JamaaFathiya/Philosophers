@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   activities.c                                       :+:      :+:    :+:   */
+/*   activities_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fathjami <fathjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 16:30:09 by fathjami          #+#    #+#             */
-/*   Updated: 2022/03/12 16:34:19 by fathjami         ###   ########.fr       */
+/*   Updated: 2022/03/12 16:48:48 by fathjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	activities(t_phil *philo)
 	pthread_t	monitor;
 
 	pthread_create(&monitor, NULL, alive, philo);
-	while (!philo->my_time_has_come)
+	while (1)
 	{
 		sem_wait(philo->arg->available_forks);
 		print_msg(philo, "has taken a fork");
@@ -36,7 +36,7 @@ void	activities(t_phil *philo)
 		sem_post(philo->arg->available_forks);
 		philo->nb_of_meals++;
 		if (philo->nb_of_meals == philo->arg->nbr_meal)
-			break ;
+			exit (0);
 		print_msg(philo, "is sleeping");
 		usleep(philo->arg->t_sleep * 1000);
 		print_msg(philo, "is thinking");
