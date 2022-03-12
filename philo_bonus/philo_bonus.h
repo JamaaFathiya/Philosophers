@@ -6,7 +6,7 @@
 /*   By: fathjami <fathjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 04:16:51 by fathjami          #+#    #+#             */
-/*   Updated: 2022/03/12 14:45:28 by fathjami         ###   ########.fr       */
+/*   Updated: 2022/03/12 16:19:54 by fathjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct s_philo
 	int				nb_of_meals;
 	int				my_time_has_come;
 	long long		last_meal;
-	pthread_mutex_t	finish_lock;
 	struct s_arg	*arg;
 }	t_phil;
 
@@ -51,19 +50,17 @@ typedef struct s_arg
 
 /* <---------- initilazing functions-----------> */
 
-int			init_arg(t_arg *arg, int ac, char **av);
 int			init_sem(t_arg *arg);
+int			init_arg(t_arg *arg, int ac, char **av);
+void		init_philo(t_phil *philo, t_arg *arg);
 
 /* <-------------- Core functions --------------> */
 
 void		core(t_arg *arg);
-void		activities(t_phil *philo);
 
 /* <--------- Activities functions ------------> */
 
-void		eat(t_phil *philo);
-void		sleep_and_think(t_phil *philo);
-void		pickup_forks(t_phil *philo, int id);
+void		activities(t_phil *philo);
 
 /* <----------- Monitoring functions ----------> */
 void		*alive(void *arg);
@@ -76,6 +73,7 @@ long long	current_time(t_phil *philo);
 void		print_msg(t_phil *philo, char *msg);
 void		print_error(char *str);
 
+/* <------------ Cleaning function ------------> */
 
 void		free_all(t_arg *arg);
 #endif

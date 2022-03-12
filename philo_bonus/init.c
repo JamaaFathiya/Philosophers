@@ -6,7 +6,7 @@
 /*   By: fathjami <fathjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:18:56 by fathjami          #+#    #+#             */
-/*   Updated: 2022/03/12 14:46:53 by fathjami         ###   ########.fr       */
+/*   Updated: 2022/03/12 16:36:29 by fathjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,27 @@ int	init_arg(t_arg *arg, int ac, char **av)
 	return (1);
 }
 
+/*0644
+0 > no access to file
+6 > read/write permisson for the user
+4 > read only for the group and others
+*/
 int	init_sem(t_arg *arg)
 {
-	/*0644
-	0 > no access to file
-	6 > read/write permisson for the user
-	4 > read only for the group and others
-	*/
-	arg->available_forks = sem_open("sem", O_CREAT | O_EXCL, 0644, arg->nbr_of_philo);
+	arg->available_forks = sem_open("sem", O_CREAT | O_EXCL, 0644,
+			arg->nbr_of_philo);
 	if (arg->available_forks == SEM_FAILED || sem_unlink("sem"))
 	{
 		printf("alloc error\n");
 		return (0);
 	}
 	return (1);
+}
+
+void	init_philo(t_phil *philo, t_arg *arg)
+{
+	philo->arg = arg;
+	philo->nb_of_meals = 0;
+	philo->last_meal = arg->creation_time;
+	philo->my_time_has_come = 0;
 }
