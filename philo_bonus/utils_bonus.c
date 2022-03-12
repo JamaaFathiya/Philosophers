@@ -6,7 +6,7 @@
 /*   By: fathjami <fathjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 16:36:37 by fathjami          #+#    #+#             */
-/*   Updated: 2022/03/12 17:21:59 by fathjami         ###   ########.fr       */
+/*   Updated: 2022/03/12 17:30:19 by fathjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	ft_atoi(const char *nptr)
 	while (nptr[i])
 	{
 		if (nptr[i] < '0' || nptr[i] > '9')
-			print_error("Invalid arguments");
+			print_error("Invalid argument found");
 		res *= 10;
 		res += (int)nptr[i] - 48;
 		i++;

@@ -6,7 +6,7 @@
 /*   By: fathjami <fathjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 13:25:15 by fathjami          #+#    #+#             */
-/*   Updated: 2022/03/07 04:14:37 by fathjami         ###   ########.fr       */
+/*   Updated: 2022/03/12 17:30:00 by fathjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ long long	current_time(t_phil *philo)
 
 void	print_error(char *str)
 {
-	printf("Error! %s", str);
+	printf("Error! %s\n", str);
 	exit (1);
 }
 
@@ -54,11 +54,13 @@ int	ft_atoi(const char *nptr)
 	if (nptr[i] == '+' || nptr[i] == '-')
 	{
 		if (nptr[i] == '-')
-			s *= -1;
+			print_error("Negative sign found");
 		i++;
 	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
+	while (nptr[i])
 	{
+		if (nptr[i] < '0' || nptr[i] > '9')
+			print_error("Invalid argument found");
 		res *= 10;
 		res += (int)nptr[i] - 48;
 		i++;
