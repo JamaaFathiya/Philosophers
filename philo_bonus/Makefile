@@ -3,7 +3,7 @@ FLAGS= -Wall -Wextra -Werror
 RM= rm -rf
 
 HEADER= philo_bonus.h
-FILES= core main init utils
+FILES= core main init utils activities clean monitoring
 OBJ=$(FILES:=.o)
 SRC=$(FILES:=.c)
 NAME=philo

@@ -6,7 +6,7 @@
 /*   By: fathjami <fathjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 04:24:12 by fathjami          #+#    #+#             */
-/*   Updated: 2022/03/07 04:25:50 by fathjami         ###   ########.fr       */
+/*   Updated: 2022/03/12 14:43:15 by fathjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	*alive(void *arg)
 	t_phil	*philo;
 
 	philo = arg;
-	while (!philo->my_time_has_come)
+	while (!philo->arg->finish)
 	{
 		if (philo->my_time_has_come + philo->arg->t_die <= current_time(philo))
 		{

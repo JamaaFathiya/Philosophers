@@ -6,7 +6,7 @@
 /*   By: fathjami <fathjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 04:16:51 by fathjami          #+#    #+#             */
-/*   Updated: 2022/03/09 18:09:30 by fathjami         ###   ########.fr       */
+/*   Updated: 2022/03/12 14:45:28 by fathjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <pthread.h>
 # include <string.h>
+# include <signal.h>
 # include <sys/time.h>
 # include <sys/types.h>
 # include <semaphore.h>
@@ -29,6 +30,9 @@ typedef struct s_philo
 {
 	int				id;
 	int				nb_of_meals;
+	int				my_time_has_come;
+	long long		last_meal;
+	pthread_mutex_t	finish_lock;
 	struct s_arg	*arg;
 }	t_phil;
 
@@ -36,29 +40,24 @@ typedef struct s_arg
 {
 	int				t_die;
 	int				t_eat;
-	int				finish;
 	int				t_sleep;
 	int				nbr_meal;
 	int				nbr_of_philo;
-	int				all_ate;
 	int				*id_table;
-	sem_t			available_f;
+	sem_t			*available_forks;
 	long long		creation_time;
-	pthread_mutex_t	finish_lock;
+
 }	t_arg;
 
 /* <---------- initilazing functions-----------> */
 
-void		print_error(char *str);
-void		join_thread(t_arg *arg);
-int			init_mutex(t_arg *arg);
-int			init_thread(t_arg *arg);
-int			ft_atoi(const char *str);
 int			init_arg(t_arg *arg, int ac, char **av);
+int			init_sem(t_arg *arg);
 
-/* <-------------- Core function --------------> */
+/* <-------------- Core functions --------------> */
 
 void		core(t_arg *arg);
+void		activities(t_phil *philo);
 
 /* <--------- Activities functions ------------> */
 
@@ -67,9 +66,7 @@ void		sleep_and_think(t_phil *philo);
 void		pickup_forks(t_phil *philo, int id);
 
 /* <----------- Monitoring functions ----------> */
-
 void		*alive(void *arg);
-void		*hungry(void *arg);
 
 /* <------------- Utils functions -------------> */
 
@@ -77,5 +74,8 @@ long long	getmili(void);
 int			ft_atoi(const char *nptr);
 long long	current_time(t_phil *philo);
 void		print_msg(t_phil *philo, char *msg);
+void		print_error(char *str);
 
+
+void		free_all(t_arg *arg);
 #endif

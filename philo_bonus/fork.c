@@ -1,11 +1,5 @@
 #include "philo_bonus.h"
 
-void    test(t_phil *philo)
-{
-    printf("I am the philosopher with ID : %i\n", philo->id);
-    exit (0);
-}
-
 void    core(t_arg *arg)
 {
     t_phil *philo;
@@ -38,4 +32,3 @@ void    core(t_arg *arg)
         printf("      pid %i: %i\n", i, arg->id_table[i]);
     }
 }
-// 101001010100101010
