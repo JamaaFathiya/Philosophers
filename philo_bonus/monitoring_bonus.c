@@ -6,7 +6,7 @@
 /*   By: fathjami <fathjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 16:34:42 by fathjami          #+#    #+#             */
-/*   Updated: 2022/03/13 01:42:03 by fathjami         ###   ########.fr       */
+/*   Updated: 2022/03/12 17:19:48 by fathjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	*alive(void *arg)
 		if (philo->last_meal + philo->arg->t_die <= current_time(philo))
 		{
 			print_msg(philo, "died");
+			philo->my_time_has_come = 1;
 			exit (1);
 		}
 		usleep(1000);

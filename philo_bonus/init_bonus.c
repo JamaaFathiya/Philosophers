@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_bonus.c                                       :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fathjami <fathjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:18:56 by fathjami          #+#    #+#             */
-/*   Updated: 2022/03/13 01:43:01 by fathjami         ###   ########.fr       */
+/*   Updated: 2022/03/12 16:36:29 by fathjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,5 @@ void	init_philo(t_phil *philo, t_arg *arg)
 	philo->arg = arg;
 	philo->nb_of_meals = 0;
 	philo->last_meal = arg->creation_time;
+	philo->my_time_has_come = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: fathjami <fathjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 04:16:51 by fathjami          #+#    #+#             */
-/*   Updated: 2022/03/13 01:42:50 by fathjami         ###   ########.fr       */
+/*   Updated: 2022/03/12 16:19:54 by fathjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_philo
 {
 	int				id;
 	int				nb_of_meals;
+	int				my_time_has_come;
 	long long		last_meal;
 	struct s_arg	*arg;
 }	t_phil;
