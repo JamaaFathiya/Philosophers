@@ -6,7 +6,7 @@
 /*   By: fathjami <fathjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 16:30:09 by fathjami          #+#    #+#             */
-/*   Updated: 2022/03/12 16:48:48 by fathjami         ###   ########.fr       */
+/*   Updated: 2022/03/13 01:41:54 by fathjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,5 @@ void	activities(t_phil *philo)
 		print_msg(philo, "is thinking");
 	}
 	pthread_join(monitor, NULL);
-	if (philo->my_time_has_come)
-		exit (1);
 	exit(0);
 }
