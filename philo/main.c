@@ -6,7 +6,7 @@
 /*   By: fathjami <fathjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:19:33 by fathjami          #+#    #+#             */
-/*   Updated: 2022/03/07 04:06:40 by fathjami         ###   ########.fr       */
+/*   Updated: 2022/06/01 11:40:41 by fathjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int ac, char **av)
 		print_error("Incorrect number of arguments.\n");
 	if (!init_arg(arg, ac, av))
 		print_error("Allocation failed.\n");
-	init_mutex(arg);
+	init_mutex(arg);//lunch the program
 	if (!init_thread(arg))
 		print_error("Something went wrong during the threads creation.\n");
 	join_thread(arg);

@@ -6,7 +6,7 @@
 /*   By: fathjami <fathjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 16:05:29 by fathjami          #+#    #+#             */
-/*   Updated: 2022/03/12 17:20:16 by fathjami         ###   ########.fr       */
+/*   Updated: 2022/06/01 11:41:22 by fathjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int ac, char **av)
 		print_error("Allocation or semaphore creation failed.\n");
 		exit (1);
 	}
-	core(arg);
+	core(arg);//lunch the program
 	free_all(arg);
 	return (0);
 }
